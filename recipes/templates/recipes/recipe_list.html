@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Little Cookbook</title>
+
+    <style>
+        :root {
+            --background: #faf7f2;
+            --card: #ffffff;
+            --text: #303b32;
+            --muted: #6b746c;
+            --green: #344e41;
+            --green-dark: #24392e;
+            --terracotta: #a64f35;
+            --border: #e6e5dc;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--background);
+            color: var(--text);
+            font-family: "Segoe UI", Arial, sans-serif;
+            line-height: 1.7;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible,
+        input:focus-visible {
+            outline: 3px solid var(--terracotta);
+            outline-offset: 5px;
+        }
+
+        .container {
+            width: min(1120px, 100% - 48px);
+            margin-inline: auto;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            padding-block: 26px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: -0.4px;
+        }
+
+        .brand-icon {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            border-radius: 14px;
+            background: var(--green);
+            font-size: 1.3rem;
+        }
+
+        .nav-link {
+            color: var(--green);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        /* Introduction */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            margin-block: 38px 54px;
+            padding: 64px;
+            border: 1px solid #dce5d8;
+            border-radius: 28px;
+            background:
+                radial-gradient(
+                    circle at 95% 10%,
+                    #d5e2cd 0,
+                    transparent 45%
+                ),
+                #edf2e8;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            right: -65px;
+            bottom: -135px;
+            width: 340px;
+            height: 340px;
+            border: 1px solid #c2d1b9;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .eyebrow {
+            margin: 0 0 18px;
+            color: var(--green);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 400;
+            letter-spacing: -2px;
+            line-height: 1.08;
+        }
+
+        .hero h1 em {
+            color: var(--terracotta);
+            font-weight: 400;
+        }
+
+        .hero-description {
+            position: relative;
+            z-index: 1;
+            max-width: 460px;
+            margin: 24px 0 30px;
+            color: #56634f;
+            font-size: 1.05rem;
+        }
+
+        .button {
+            position: relative;
+            z-index: 1;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 13px 22px;
+            border: none;
+            border-radius: 10px;
+            background: var(--green);
+            color: white;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            line-height: 1.7;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 180ms ease, transform 180ms ease;
+        }
+
+        .button:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Recipe collection */
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 26px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: -0.7px;
+        }
+
+        .section-heading p {
+            margin: 4px 0 0;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .recipe-count {
+            padding: 7px 14px;
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+
+        /* Search */
+        .search-form {
+            margin-bottom: 28px;
+        }
+
+        .search-form label {
+            display: block;
+            margin-bottom: 10px;
+            color: var(--green);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .search-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .search-controls input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px 18px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: white;
+            color: var(--text);
+            font: inherit;
+        }
+
+        .search-controls input::placeholder {
+            color: var(--muted);
+        }
+
+        .search-summary {
+            margin: 12px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+            overflow-wrap: anywhere;
+        }
+
+        .search-summary a {
+            margin-left: 8px;
+            color: var(--green);
+            text-underline-offset: 3px;
+        }
+
+        /* Recipe cards */
+        .recipe-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            align-items: start;
+            gap: 28px;
+        }
+
+        .recipe-card {
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--card);
+            box-shadow: 0 6px 24px rgba(48, 59, 50, 0.04);
+            transition: box-shadow 180ms ease, transform 180ms ease;
+        }
+
+        .recipe-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(48, 59, 50, 0.09);
+        }
+
+        .recipe-banner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            min-height: 94px;
+            padding: 24px 28px;
+            background: #edf1e7;
+        }
+
+        .recipe-card:nth-child(3n + 2) .recipe-banner {
+            background: #f6e9dd;
+        }
+
+        .recipe-card:nth-child(3n + 3) .recipe-banner {
+            background: #eee9f3;
+        }
+
+        .recipe-number {
+            color: var(--green);
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2.2rem;
+            line-height: 1;
+        }
+
+        .time-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 7px 12px;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            color: var(--green);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .recipe-content {
+            padding: 28px;
+            overflow-wrap: anywhere;
+        }
+
+        .recipe-title {
+            margin: 0 0 24px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 1.9rem;
+            font-weight: 400;
+            letter-spacing: -0.6px;
+            line-height: 1.2;
+        }
+
+        .recipe-title a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .recipe-title a:hover {
+            color: var(--terracotta);
+            text-decoration: underline;
+            text-underline-offset: 5px;
+        }
+
+        .recipe-section + .recipe-section {
+            margin-top: 24px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .recipe-section h4 {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            margin: 0 0 12px;
+            color: var(--green);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+        }
+
+        .section-dot {
+            width: 7px;
+            height: 7px;
+            flex-shrink: 0;
+            border-radius: 50%;
+            background: #839b72;
+        }
+
+        .instructions .section-dot {
+            background: var(--terracotta);
+        }
+
+        .recipe-text {
+            color: #586158;
+            font-size: 0.95rem;
+        }
+
+        .recipe-text p {
+            margin: 0 0 12px;
+        }
+
+        .recipe-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ingredients .recipe-text {
+            padding: 16px 18px;
+            border-radius: 10px;
+            background: #f8f9f5;
+        }
+
+        /* Empty collection and search results */
+        .empty-state {
+            grid-column: 1 / -1;
+            padding: 64px 24px;
+            border: 1px dashed #bfcbb6;
+            border-radius: 20px;
+            background: #f0f4eb;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        .empty-icon {
+            margin-bottom: 12px;
+            font-size: 3rem;
+        }
+
+        .empty-state h3 {
+            margin: 0 0 10px;
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 2rem;
+            font-weight: 400;
+        }
+
+        .empty-state p {
+            max-width: 390px;
+            margin: 0 auto 24px;
+            color: var(--muted);
+        }
+
+        /* Footer */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px 24px;
+            margin-top: 64px;
+            padding-block: 24px;
+            border-top: 1px solid var(--border);
+            color: var(--muted);
+            font-size: 0.8rem;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        /* Smaller screens */
+        @media (max-width: 700px) {
+            .container {
+                width: calc(100% - 32px);
+            }
+
+            .hero {
+                margin-block: 24px 36px;
+                padding: 38px 26px;
+                border-radius: 20px;
+            }
+
+            .hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .recipe-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .recipe-content {
+                padding: 24px;
+            }
+
+            .brand {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .search-controls {
+                flex-direction: column;
+            }
+
+            .navbar {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .button,
+            .recipe-card {
+                transition: none;
+            }
+
+            .button:hover,
+            .recipe-card:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar" aria-label="Main navigation">
+                <a class="brand" href="{% url 'recipe_list' %}">
+                    <span class="brand-icon" aria-hidden="true">🌿</span>
+                    The Little Cookbook
+                </a>
+
+                {% if user.is_staff %}
+                    <a class="nav-link" href="{% url 'recipe_create' %}">
+                        Add a recipe <span aria-hidden="true">+</span>
+                    </a>
+                {% else %}
+                    <a class="nav-link" href="{% url 'admin:index' %}">
+                        Sign in <span aria-hidden="true">↗</span>
+                    </a>
+                {% endif %}
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero" aria-labelledby="hero-title">
+                <p class="eyebrow">From the kitchen, with love</p>
+
+                <h1 id="hero-title">
+                    Simple ingredients.<br>
+                    <em>Wonderful food.</em>
+                </h1>
+
+                <p class="hero-description">
+                    A little collection of recipes worth keeping.
+                    Find something delicious, put on your apron,
+                    and make yourself at home.
+                </p>
+
+                <a class="button" href="#recipes">
+                    Explore the recipes
+                    <span aria-hidden="true">↓</span>
+                </a>
+            </section>
+
+            <section id="recipes" aria-labelledby="collection-title">
+                <div class="section-heading">
+                    <div>
+                        <h2 id="collection-title">The recipe collection</h2>
+                        <p>Good food starts with a little inspiration.</p>
+                    </div>
+
+                    <span class="recipe-count">
+                        {{ recipes|length }}
+                        recipe{{ recipes|length|pluralize }}
+                        {% if query %}found{% endif %}
+                    </span>
+                </div>
+
+                <form
+                    class="search-form"
+                    method="get"
+                    action="{% url 'recipe_list' %}"
+                    role="search"
+                >
+                    <label for="recipe-search">Find your next meal</label>
+
+                    <div class="search-controls">
+                        <input
+                            type="search"
+                            id="recipe-search"
+                            name="q"
+                            value="{{ query }}"
+                            placeholder="Search recipes, e.g. eggs..."
+                        >
+                        <button class="button" type="submit">
+                            Search
+                        </button>
+                    </div>
+
+                    {% if query %}
+                        <p class="search-summary">
+                            Showing results for <strong>“{{ query }}”</strong>.
+                            <a href="{% url 'recipe_list' %}">Clear search</a>
+                        </p>
+                    {% endif %}
+                </form>
+
+                <div class="recipe-grid">
+                    {% for recipe in recipes %}
+                        <article class="recipe-card">
+                            <div class="recipe-banner">
+                                <span class="recipe-number" aria-hidden="true">
+                                    No. {{ forloop.counter|stringformat:"02d" }}
+                                </span>
+
+                                <span class="time-badge">
+                                    <span aria-hidden="true">◷</span>
+                                    {{ recipe.cooking_time }} min cooking
+                                </span>
+                            </div>
+
+                            <div class="recipe-content">
+                                <h3 class="recipe-title">
+                                    <a href="{% url 'recipe_detail' pk=recipe.pk %}">
+                                        {{ recipe.title }}
+                                    </a>
+                                </h3>
+
+                                <div class="recipe-section ingredients">
+                                    <h4>
+                                        <span
+                                            class="section-dot"
+                                            aria-hidden="true"
+                                        ></span>
+                                        Ingredients
+                                    </h4>
+
+                                    <div class="recipe-text">
+                                        {{ recipe.ingredients|linebreaks }}
+                                    </div>
+                                </div>
+
+                                <div class="recipe-section instructions">
+                                    <h4>
+                                        <span
+                                            class="section-dot"
+                                            aria-hidden="true"
+                                        ></span>
+                                        Let's make it
+                                    </h4>
+
+                                    <div class="recipe-text">
+                                        {{ recipe.instructions|linebreaks }}
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    {% empty %}
+                        <div class="empty-state">
+                            {% if query %}
+                                <div class="empty-icon" aria-hidden="true">
+                                    🔎
+                                </div>
+
+                                <h3>No matching recipes.</h3>
+
+                                <p>
+                                    We couldn't find any titles matching
+                                    “{{ query }}”. Try another word or
+                                    browse the full collection.
+                                </p>
+
+                                <a
+                                    class="button"
+                                    href="{% url 'recipe_list' %}"
+                                >
+                                    Show all recipes
+                                </a>
+                            {% else %}
+                                <div class="empty-icon" aria-hidden="true">
+                                    🥣
+                                </div>
+
+                                <h3>Something delicious is on its way.</h3>
+
+                                <p>
+                                    Your cookbook is waiting for its first
+                                    recipe. Add a favorite and start
+                                    your collection.
+                                </p>
+
+                                <a
+                                    class="button"
+                                    href="{% url 'admin:recipes_recipe_add' %}"
+                                >
+                                    Add your first recipe
+                                    <span aria-hidden="true">+</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>The Little Cookbook &middot; {% now "Y" %}</p>
+            <p>Made to be cooked, shared, and enjoyed.</p>
+        </footer>
+    </div>
+</body>
+</html>
