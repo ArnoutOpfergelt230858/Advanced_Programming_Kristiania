@@ -1,8 +1,8 @@
 [project]
 name = "exam"
 version = "0.1.0"
-description = "Add your description here"
-# readme = "README.md"
+description = "A Django vlog-sharing application for PGR211"
+readme = "README.md"
 authors = [
     { name = "ArnoutOpfergelt230858", email = "230858@buas.nl" }
 ]

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}The Little Vlog{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'vlogs/style.css' %}">
+</head>
+<body>
+<div class="container">
+    <header><nav class="navbar" aria-label="Main navigation">
+        <a class="brand" href="{% url 'vlogs:list' %}"><span aria-hidden="true">▶</span> The Little Vlog</a>
+        <div class="actions">
+            {% if user.is_staff %}
+                <a href="{% url 'vlogs:create' %}">Share a vlog +</a>
+                <a href="{% url 'admin:index' %}">Admin</a>
+                <form method="post" action="{% url 'admin:logout' %}">{% csrf_token %}<button class="link-button" type="submit">Sign out</button></form>
+            {% else %}
+                <a href="{% url 'admin:login' %}?next={% url 'vlogs:list' %}">Staff sign in</a>
+            {% endif %}
+        </div>
+    </nav></header>
+    <main id="main">
+        {% for message in messages %}<p class="message" role="status">{{ message }}</p>{% endfor %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer>The Little Vlog &middot; {% now 'Y' %}<span>Moments worth sharing.</span></footer>
+</div>
+</body>
+</html>

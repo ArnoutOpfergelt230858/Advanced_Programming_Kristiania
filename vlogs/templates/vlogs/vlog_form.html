@@ -1,0 +1,14 @@
+{% extends 'vlogs/base.html' %}
+{% block title %}{% if post %}Edit vlog{% else %}Share a vlog{% endif %} · The Little Vlog{% endblock %}
+{% block content %}
+<section class="panel narrow">
+    <h1>{% if post %}Edit your story{% else %}Share a new story{% endif %}</h1>
+    <p>Link to your video and tell us what makes it worth watching.</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {{ form.as_p }}
+        <div class="actions"><button class="button" type="submit">{% if post %}Save changes{% else %}Publish vlog{% endif %}</button><a href="{% if post %}{{ post.get_absolute_url }}{% else %}{% url 'vlogs:list' %}{% endif %}">Cancel</a></div>
+    </form>
+</section>
+{% endblock %}

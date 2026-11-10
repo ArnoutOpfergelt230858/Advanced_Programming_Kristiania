@@ -1,0 +1,9 @@
+{% extends 'vlogs/base.html' %}
+{% block title %}Delete vlog · The Little Vlog{% endblock %}
+{% block content %}
+<section class="panel narrow">
+    <h1>Delete this vlog?</h1>
+    <p>“{{ post.title }}” will be permanently removed from the collection. This does not delete the original video.</p>
+    <form method="post">{% csrf_token %}<div class="actions"><button class="button danger" type="submit">Yes, delete vlog</button><a href="{{ post.get_absolute_url }}">Cancel</a></div></form>
+</section>
+{% endblock %}

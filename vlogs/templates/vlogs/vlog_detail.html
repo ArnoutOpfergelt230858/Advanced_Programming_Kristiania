@@ -1,0 +1,15 @@
+{% extends 'vlogs/base.html' %}
+{% block title %}{{ post.title }} · The Little Vlog{% endblock %}
+{% block content %}
+<p><a href="{% url 'vlogs:list' %}">← All vlogs</a></p>
+<article class="panel">
+    <p class="eyebrow">{{ post.get_category_display }}</p>
+    <h1>{{ post.title }}</h1>
+    <p class="meta">By {{ post.author.get_username }} &middot; Published {{ post.published_date|date:'j M Y, H:i' }}</p>
+    <a class="button" href="{{ post.video_url }}" target="_blank" rel="noopener noreferrer">Watch video ↗</a>
+    <p class="meta">Opens the video provider in a new tab.</p>
+    <div class="description">{{ post.description|linebreaks }}</div>
+    <div class="tags">{% for tag in post.tag_list %}<a href="{% url 'vlogs:list' %}?q={{ tag|urlencode }}">#{{ tag }}</a>{% endfor %}</div>
+    {% if user.is_staff %}<div class="actions edit-actions"><a href="{% url 'vlogs:update' post.pk %}">Edit vlog</a><a class="danger-link" href="{% url 'vlogs:delete' post.pk %}">Delete vlog</a></div>{% endif %}
+</article>
+{% endblock %}
