@@ -5,4 +5,7 @@ description = "A Django vlog-sharing application for PGR211"
 readme = "README.md"
 authors = [{ name = "ArnoutOpfergelt230858", email = "230858@buas.nl" }]
 requires-python = ">=3.12"
-dependencies = ["django>=6.1.3"]
+dependencies = [
+    "django>=6.1.3",
+    "dotenv>=0.9.9",
+]
