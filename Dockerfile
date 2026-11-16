@@ -12,6 +12,8 @@ COPY . .
 
 ENV PATH="/app/.venv/bin:$PATH"
 
+WORKDIR /app/django_project
+
 EXPOSE 8000
 
-CMD ["sh", "-c", "python manage.py migrate --noinput && exec python manage.py runserver 0.0.0.0:8000"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && (python manage.py createsuperuser --noinput || true) && exec python manage.py runserver 0.0.0.0:8000"]

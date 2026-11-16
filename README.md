@@ -6,21 +6,58 @@ with a new vlog collection and complete create/read/update/delete workflows.
 
 ## Run locally
 
-From this directory, with Python 3.12+ and [uv](https://docs.astral.sh/uv/) installed:
+From the repository root, with Python 3.12+ and [uv](https://docs.astral.sh/uv/) installed,
+install the dependencies:
 
-```powershell
+```sh
 uv sync
+```
+
+Then run Django commands from the `django_project/` directory. For example:
+
+```sh
+cd django_project
 uv run python manage.py migrate
 uv run python manage.py runserver
 ```
 
-Open **http://127.0.0.1:8000/**. If port 8000 is occupied, use
-`uv run python manage.py runserver 8001`.
+### Activating the virtual environment (optional)
 
-Existing accounts in this copy's SQLite database still work. For a fresh database,
-create an administrator:
+You can use `uv run` for each Django command, as shown above, without manually
+activating the environment. Alternatively, activate it from the repository root,
+then change to `django_project/` and use `python manage.py ...` directly.
+
+**macOS/Linux:**
+
+```sh
+source .venv/bin/activate
+cd django_project
+```
+
+**Windows (PowerShell):**
 
 ```powershell
+.\.venv\Scripts\Activate.ps1
+cd django_project
+```
+
+**Windows (Command Prompt):**
+
+```cmd
+.venv\Scripts\activate.bat
+cd django_project
+```
+
+Open **http://127.0.0.1:8000/**. If port 8000 is occupied, use
+`uv run python manage.py runserver 8001` from `django_project/`
+(or `python manage.py runserver 8001` with the environment activated).
+
+The SQLite database is local and is not committed to the repository. When setting up
+the project locally, apply the migrations and create a staff administrator account:
+
+```sh
+# Run from django_project/
+uv run python manage.py migrate
 uv run python manage.py createsuperuser
 ```
 
@@ -32,14 +69,14 @@ Videos open on their original provider; this application stores links, not uploa
 
 ## Features and routes
 
-| Page | URL | Access |
-| --- | --- | --- |
-| Searchable, category-filtered, paginated list | `/` | Public |
-| Vlog detail and video link | `/vlogs/<id>/` | Public |
-| Publish vlog | `/vlogs/new/` | Staff |
-| Edit vlog | `/vlogs/<id>/edit/` | Staff |
-| Confirm/delete vlog | `/vlogs/<id>/delete/` | Staff |
-| Administration | `/admin/` | Staff with model permissions; superusers have all permissions |
+| Page                                          | URL                   | Access                                                        |
+| --------------------------------------------- | --------------------- | ------------------------------------------------------------- |
+| Searchable, category-filtered, paginated list | `/`                   | Public                                                        |
+| Vlog detail and video link                    | `/vlogs/<id>/`        | Public                                                        |
+| Publish vlog                                  | `/vlogs/new/`         | Staff                                                         |
+| Edit vlog                                     | `/vlogs/<id>/edit/`   | Staff                                                         |
+| Confirm/delete vlog                           | `/vlogs/<id>/delete/` | Staff                                                         |
+| Administration                                | `/admin/`             | Staff with model permissions; superusers have all permissions |
 
 Staff are trusted collection editors and can manage all
 posts through the public-facing forms. Regular accounts cannot publish/edit/delete.
@@ -48,32 +85,21 @@ The newest publication appears first, with six posts per page.
 
 ## Project layout
 
-`vlogsite/` contains the Django project settings and server entry points.
-`vlogs/` contains the application models, migrations, views, forms, templates,
-static files, admin configuration, and tests. Vlogs are stored in the `VlogPost`
-table in the local SQLite database; existing login accounts remain usable.
+`django_project/` contains `manage.py`, the `vlogsite/` Django project settings and
+server entry points, and the `vlogs/` application (models, migrations, views, forms,
+templates, static files, and admin configuration). The `pyproject.toml` and
+`uv.lock` at the repository root define and lock the Python environment. Docker
+files, if used, are kept separately in `docker/`.
 
 ## Verification
 
-```powershell
+Run these from `django_project/`:
+
+```sh
 uv run python manage.py check
 uv run python manage.py makemigrations --check --dry-run
 uv run python manage.py test
 ```
 
-Tests use a temporary database and cover public browsing/search, pagination,
-staff-only CRUD, author assignment, validation, safe deletion, CSRF, escaped
-content, missing records, and admin operations.
-
-See [REPORT.md](REPORT.md) for the architecture, course concepts, requirement map,
-and manual evidence checklist. Deployment is outside the requested scope; the
-settings and instructions here target local development.
-
-## Source submission
-
-Include `manage.py`, `vlogsite/`, `vlogs/` (including migrations, templates and static
-files), `src/`, `pyproject.toml`,
-`uv.lock`, `.python-version`, and the documentation in your source ZIP. Exclude
-`.venv/`, `.git/`, `__pycache__/`, local secrets, and personal database files.
-Extract the ZIP into a separate directory and run the setup/check commands above
-before submission. Add your own screenshots and review the technical explanation.
+The test command uses Django's test runner. Deployment is outside the scope of these
+local-development instructions.

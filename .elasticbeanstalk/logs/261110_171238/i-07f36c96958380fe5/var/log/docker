@@ -1,0 +1,20 @@
+Nov 10 14:48:25 ip-172-31-44-67 docker[1882]: time="2026-11-10T14:48:25.068679229Z" level=info msg="Starting up"
+Nov 10 14:48:25 ip-172-31-44-67 docker[1882]: time="2026-11-10T14:48:25.129505774Z" level=info msg="Loading containers: start."
+Nov 10 14:48:25 ip-172-31-44-67 docker[1882]: time="2026-11-10T14:48:25.766361261Z" level=info msg="Loading containers: done."
+Nov 10 14:48:25 ip-172-31-44-67 docker[1882]: time="2026-11-10T14:48:25.798937553Z" level=info msg="Docker daemon" commit=eaa0057 containerd-snapshotter=false storage-driver=overlay2 version=25.0.18
+Nov 10 14:48:25 ip-172-31-44-67 docker[1882]: time="2026-11-10T14:48:25.799099348Z" level=info msg="Daemon has completed initialization"
+Nov 10 14:48:25 ip-172-31-44-67 docker[1882]: time="2026-11-10T14:48:25.849285326Z" level=info msg="API listen on /run/docker.sock"
+Nov 10 15:48:35 ip-172-31-44-67 docker[1882]: 2026/11/10 15:48:35 http2: server: error reading preface from client @: read unix /run/docker.sock->@: read: connection reset by peer
+Nov 10 15:48:35 ip-172-31-44-67 docker[1882]: 2026/11/10 15:48:35 http2: server: error reading preface from client @: read unix /run/docker.sock->@: read: connection reset by peer
+Nov 10 15:48:40 ip-172-31-44-67 docker[1882]: time="2026-11-10T15:48:40.649369957Z" level=info msg="ignoring event" container=6e75ee689a535f174e1c44199165baab980339175094e623d2ca9714b01bc98d module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Nov 10 15:54:12 ip-172-31-44-67 docker[1882]: 2026/11/10 15:54:12 http2: server: error reading preface from client @: read unix /run/docker.sock->@: read: connection reset by peer
+Nov 10 15:54:17 ip-172-31-44-67 docker[1882]: time="2026-11-10T15:54:17.976399667Z" level=info msg="ignoring event" container=ec556cc93a625be26bbe83b6d5055702715c5d85c0e2f249fb4cd03dd558364e module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Nov 10 16:09:20 ip-172-31-44-67 docker[1882]: 2026/11/10 16:09:20 http2: server: error reading preface from client @: read unix /run/docker.sock->@: read: connection reset by peer
+Nov 10 16:09:25 ip-172-31-44-67 docker[1882]: time="2026-11-10T16:09:25.866550282Z" level=info msg="ignoring event" container=00b53afec1e48cff396677939b0429d03c698269f147c5a719d3d8ce75f9379a module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Nov 10 16:09:35 ip-172-31-44-67 docker[1882]: 2026/11/10 16:09:35 http2: server: error reading preface from client @: read unix /run/docker.sock->@: read: connection reset by peer
+Nov 10 16:10:42 ip-172-31-44-67 docker[1882]: 2026/11/10 16:10:42 http2: server: error reading preface from client @: read unix /run/docker.sock->@: read: connection reset by peer
+Nov 10 16:10:47 ip-172-31-44-67 docker[1882]: time="2026-11-10T16:10:47.726672647Z" level=info msg="ignoring event" container=5ede53521547834b34a5b773f0ef9f96e8b271eef747a347abea615d7af44409 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Nov 10 16:10:49 ip-172-31-44-67 docker[1882]: time="2026-11-10T16:10:49.586743543Z" level=info msg="ignoring event" container=6087e9b382ffe5cfbbb1658ad8023cc2f6e47ef534025d3dddd20ff630a9ceda module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+Nov 10 16:11:33 ip-172-31-44-67 docker[1882]: 2026/11/10 16:11:33 http2: server: error reading preface from client @: read unix /run/docker.sock->@: read: connection reset by peer
+Nov 10 16:11:33 ip-172-31-44-67 docker[1882]: 2026/11/10 16:11:33 http2: server: error reading preface from client @: read unix /run/docker.sock->@: read: connection reset by peer
+Nov 10 16:11:36 ip-172-31-44-67 docker[1882]: time="2026-11-10T16:11:36.907264768Z" level=info msg="ignoring event" container=85394687afe2d151783c3bdb5ca0f783e1a9ab4618d22c4dd1ff87737e4be7e5 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"

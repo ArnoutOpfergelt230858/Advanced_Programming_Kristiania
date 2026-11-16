@@ -1,0 +1,44 @@
+2026/11/10 15:45:54.953331 [INFO] Loading Manifest...
+2026/11/10 15:45:54.977566 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:eu-north-1:989240370370:stack/awseb-e-ysruwghqg8-stack/a4e30870-dd15-11f1-bfb0-06ffc2f4b5fd -r AWSEBAutoScalingGroup --region eu-north-1
+2026/11/10 15:45:55.267742 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:eu-north-1:989240370370:stack/awseb-e-ysruwghqg8-stack/a4e30870-dd15-11f1-bfb0-06ffc2f4b5fd -r AWSEBBeanstalkMetadata --region eu-north-1
+2026/11/10 15:45:55.500416 [INFO] Checking if docker is running...
+2026/11/10 15:45:55.500519 [INFO] Fetch current app container id...
+2026/11/10 15:45:55.500552 [INFO] Running command: docker ps | grep 6e75ee689a53
+2026/11/10 15:45:55.526083 [INFO] 6e75ee689a53   e946ca800e51   "python manage.py ru…"   8 seconds ago   Up 7 seconds   8000/tcp   mystifying_antonelli
+
+2026/11/10 15:45:55.526126 [INFO] Running command: docker wait  6e75ee689a53
+2026/11/10 15:48:40.921793 [INFO] 0
+
+2026/11/10 15:48:49.312733 [INFO] Loading Manifest...
+2026/11/10 15:48:49.327353 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:eu-north-1:989240370370:stack/awseb-e-ysruwghqg8-stack/a4e30870-dd15-11f1-bfb0-06ffc2f4b5fd -r AWSEBAutoScalingGroup --region eu-north-1
+2026/11/10 15:48:49.613492 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:eu-north-1:989240370370:stack/awseb-e-ysruwghqg8-stack/a4e30870-dd15-11f1-bfb0-06ffc2f4b5fd -r AWSEBBeanstalkMetadata --region eu-north-1
+2026/11/10 15:48:49.871620 [INFO] Checking if docker is running...
+2026/11/10 15:48:49.871715 [INFO] Fetch current app container id...
+2026/11/10 15:48:49.871744 [INFO] Running command: docker ps | grep ec556cc93a62
+2026/11/10 15:48:49.909478 [INFO] ec556cc93a62   1a2befb37875   "python manage.py ru…"   7 seconds ago   Up 7 seconds   8000/tcp   amazing_margulis
+
+2026/11/10 15:48:49.909518 [INFO] Running command: docker wait  ec556cc93a62
+2026/11/10 15:54:18.180683 [INFO] 0
+
+2026/11/10 15:54:26.491154 [INFO] Loading Manifest...
+2026/11/10 15:54:26.499275 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:eu-north-1:989240370370:stack/awseb-e-ysruwghqg8-stack/a4e30870-dd15-11f1-bfb0-06ffc2f4b5fd -r AWSEBAutoScalingGroup --region eu-north-1
+2026/11/10 15:54:26.737602 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:eu-north-1:989240370370:stack/awseb-e-ysruwghqg8-stack/a4e30870-dd15-11f1-bfb0-06ffc2f4b5fd -r AWSEBBeanstalkMetadata --region eu-north-1
+2026/11/10 15:54:26.998972 [INFO] Checking if docker is running...
+2026/11/10 15:54:26.999034 [INFO] Fetch current app container id...
+2026/11/10 15:54:26.999060 [INFO] Running command: docker ps | grep 00b53afec1e4
+2026/11/10 15:54:27.017277 [INFO] 00b53afec1e4   f86e8dfb56a2   "sh -c 'python manag…"   8 seconds ago   Up 7 seconds   8000/tcp   thirsty_carson
+
+2026/11/10 15:54:27.017305 [INFO] Running command: docker wait  00b53afec1e4
+2026/11/10 16:09:26.131035 [INFO] 0
+
+2026/11/10 16:09:34.471710 [INFO] Loading Manifest...
+2026/11/10 16:09:34.483603 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:eu-north-1:989240370370:stack/awseb-e-ysruwghqg8-stack/a4e30870-dd15-11f1-bfb0-06ffc2f4b5fd -r AWSEBAutoScalingGroup --region eu-north-1
+2026/11/10 16:09:34.736398 [INFO] Running command: /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:eu-north-1:989240370370:stack/awseb-e-ysruwghqg8-stack/a4e30870-dd15-11f1-bfb0-06ffc2f4b5fd -r AWSEBBeanstalkMetadata --region eu-north-1
+2026/11/10 16:09:35.017096 [INFO] Checking if docker is running...
+2026/11/10 16:09:35.017173 [INFO] Fetch current app container id...
+2026/11/10 16:09:35.017196 [INFO] Running command: docker ps | grep 5ede53521547
+2026/11/10 16:09:35.042615 [INFO] 5ede53521547   f86e8dfb56a2   "sh -c 'python manag…"   8 seconds ago   Up 7 seconds   8000/tcp   jolly_margulis
+
+2026/11/10 16:09:35.042649 [INFO] Running command: docker wait  5ede53521547
+2026/11/10 16:10:47.919988 [INFO] 0
+
