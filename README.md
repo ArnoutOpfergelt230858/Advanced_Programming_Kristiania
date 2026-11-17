@@ -89,17 +89,4 @@ The newest publication appears first, with six posts per page.
 server entry points, and the `vlogs/` application (models, migrations, views, forms,
 templates, static files, and admin configuration). The `pyproject.toml` and
 `uv.lock` at the repository root define and lock the Python environment. Docker
-files, if used, are kept separately in `docker/`.
-
-## Verification
-
-Run these from `django_project/`:
-
-```sh
-uv run python manage.py check
-uv run python manage.py makemigrations --check --dry-run
-uv run python manage.py test
-```
-
-The test command uses Django's test runner. Deployment is outside the scope of these
-local-development instructions.
+files, if used, are kept separately in `
